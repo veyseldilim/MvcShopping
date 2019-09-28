@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcShopping.Models.Product>
+
+@{
+     Layout = "../Shared/_Layout.cshtml";
+}
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayName("")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductPrice)
+        </td>
+
+        <td>
+            <div class="pi-pic">
+                @if (item.ProductStock == 0)
+                {
+                    <div class="tag-sale">OUT OF STOCK</div>
+                }
+                else
+                {
+                    <div class="tag-sale">ON SALE</div>
+                }
+
+                <img src="@Html.DisplayFor(modelItem => item.ImagePath)" width="260" height="200" alt="">
+                <div class="pi-links">
+                    <a href="/Cart/AddCart/@Html.DisplayFor(modelItem => item.ProductId)" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+
+                    <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                </div>
+            </div>
+        </td>
+
+    </tr>
+        }
+
+    </table>
+

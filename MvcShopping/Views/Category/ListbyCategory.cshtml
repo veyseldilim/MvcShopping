@@ -1,0 +1,174 @@
+﻿@model IEnumerable<MvcShopping.Models.Product>
+
+@{
+
+    Layout = "../Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+
+<body>
+
+
+    <!-- Page info -->
+    <div class="page-top-info">
+        <div class="container">
+            <h4>CAtegory PAge</h4>
+            <div class="site-pagination">
+                <a href="/Home">Home</a> /
+                <a href="/Category">Shop</a> /
+            </div>
+        </div>
+    </div>
+    <!-- Page info end -->
+    <!-- Category section -->
+    <section class="category-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-2 order-lg-1">
+                    <div class="filter-widget">
+                        <h2 class="fw-title">Categories</h2>
+                        <ul class="category-menu">
+                            <li>
+                                <a>
+                                    <font color="black">Electronic</font>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="/Category/ListbyCategory?categoryName=phone">Phones <span>(2)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=tablet">Tablets<span>(0)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=">Smart Watches<span>(0)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=camera">Digital Cameras <span>(0)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=console">Video Games<span>(1)</span></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a>
+                                    <font color="black">Motors</font>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="/Category/ListbyCategory?categoryName=car">Car <span>(2)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=bike">Bike<span>(56)</span></a></li>
+                                    <li><a href="/Category/ListbyCategory?categoryName=truck">Truck<span>(36)</span></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Category/ListbyCategory?categoryName=sport">Sports</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="filter-widget mb-0">
+                        <h2 class="fw-title">refine by</h2>
+                        <div class="price-range-wrap">
+                            <h4>Price</h4>
+                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" data-min="1000" data-max="5000">
+                                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;">
+                                </span>
+                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;">
+                                </span>
+                            </div>
+                            <div class="range-slider  ">
+                                <div class="price-input">
+                                    <form action="/Category/ListbyPrice?min=min?max=max" method="get">
+                                        <input type="text" id="minamount" name="min">
+                                        <input type="text" id="maxamount" name="max">
+                                        <button><i class="flaticon-search"></i></button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+                @if (Model.Any())
+                {
+
+
+                    <div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
+
+                        <div class="row">
+
+
+
+                            @foreach (var item in Model)
+                            {
+
+                                <div class="col-lg-4 col-sm-6">
+
+
+                                    <div class="product-item">
+
+
+                                        <div class="pi-pic">
+                                            @if (item.ProductStock == 0)
+                                            {
+                                                <div class="tag-sale">OUT OF STOCK</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="tag-sale">ON SALE</div>
+                                            }
+
+                                            <img src="@Html.DisplayFor(modelItem => item.ImagePath)" width="260" height="200" alt="">
+                                            <div class="pi-links">
+                                                <a href="/Cart/AddCart/@Html.DisplayFor(modelItem => item.ProductId)" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+
+                                                <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="pi-text">
+                                            <h6>  @Html.DisplayFor(modelItem => item.ProductPrice)</h6>
+                                            <p> @Html.DisplayFor(modelItem => item.ProductName)</p>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                            }
+
+                            @if (Model.Count() > 6)
+                            {
+
+
+                                <div class="text-center w-100 pt-3">
+                                    <button class="site-btn sb-line sb-dark">LOAD MORE</button>
+                                </div>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                }
+
+                else
+                {
+                    <div class="text-center w-100 pt-3">
+                        <button class="site-btn sb-line sb-dark"> <a href="/Category">No Products were Found</a></button>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Category section end -->
+
+
+
+</body>
+    </html>
+
+
+

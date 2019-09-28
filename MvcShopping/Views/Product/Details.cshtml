@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcShopping.Models.Product>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+   
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImagePath)" width="260" height="130" />
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+
+
+    <p>
+
+        @Html.ActionLink("Back to List", "Index", "Category")
+        <a href="/Home">Home Page</a>
+    </p>
+
+
+
+
+</body>
+</html>
